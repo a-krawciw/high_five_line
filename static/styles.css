@@ -11,6 +11,7 @@ body {
 
 #hifive-registry {
     display:inline-block;
+    font-family: Arial;
 }
 
 #registry-label {
@@ -24,20 +25,26 @@ body {
     line-height: 30px;
     padding: 10px;
     text-align: center;
-    background-color: #4CAF50; /* Green */
+    background-color: rgb(230, 230, 230);
+    transition: background-color 0.5s ease-in-out;
 }
 
 .team_button:hover {
-    background-color: #1C7F20; /* Green */
+    background-color: rgb(189, 189, 189);
+    transition: background-color 0.5s ease-in-out;
 }
 
-
+.team_button:active {
+    transition: background-color 0s ease-in-out;
+    background-color: rgb(66, 66, 66);
+}
 
 #main-canvas {
     position: relative;
     float: left;
     width: 75%;
     height: 100%;
+    padding-right: 30px;
     align-items: center;
     align-content: center;
     display: flex;
@@ -45,13 +52,36 @@ body {
     justify-content: center;
 }
 
-figure img {
-    vertical-align: top;
+.hifive {
+    position: absolute; 
+    width: 76px; 
+    height: 100px;
 }
-figure figcaption {
-    border: 1px dotted blue;
+
+.hifive div {
+    margin: 0 auto;
+    vertical-align: top;
+    width: 76px; 
+    height: 100px;
+    background-size: cover;
+    background-image: url("/static/images/hand_icon.png");
+    transition: all 0.25s ease-in-out;
+}
+.hifive:hover div {
+    background-image: url("/static/images/hifive_icon.png");
+}
+
+.hifive figcaption {
     text-align: center;
     font-family: Arial;
+    font-size: 20pt;
+}
+
+.sent-hifive div {
+    background-image: url("/static/images/sent_icon.png");
+}
+.sent-hifive:hover div {
+    background-image: url("/static/images/sent_icon.png");
 }
 
 #banner {

@@ -3,12 +3,10 @@ var ws = new WebSocket('ws://' + document.location.host + document.location.path
 
 function getNewHighFive(name, locX, locY) {
     var elem = "<figure " +
-            "id='" + name + "' " +
+            "id='receipt-" + name + "' class='hifive' " +
             "onclick='returnHighFive(\"" + name + "\")' " +
-            "style='position: absolute; left: " + locX + "px; top: " + locY + "px; width: 38px; height: 50px'>" + 
-            "<img " + 
-            "src='/static/images/hand_icon.png' width='38px'; height='50px' " +
-            "/>" +
+            "style='left: " + locX + "px; top: " + locY + "px;'>" + 
+            "<div></div>" + 
             "<figcaption>" + name + "</figcaption>" +
             "</figure>";
 
@@ -17,11 +15,9 @@ function getNewHighFive(name, locX, locY) {
 
 function getNewSentHighFive(name, locX, locY) {
     var elem = "<figure " +
-            "id='" + name + "' " +
-            "style='position: absolute; left: " + locX + "px; top: " + locY + "px; width: 38px; height: 50px'>" +
-            "<img " +
-            "src='/static/images/hand_icon.png' width='38px'; height='50px' " +
-            "/>" +
+            "id='sent-" + name + "' class='hifive sent-hifive' " +
+            "style='left: " + locX + "px; top: " + locY + "px;'>" + 
+            "<div></div>" + 
             "<figcaption>" + name + "</figcaption>" +
             "</figure>";
 
@@ -43,21 +39,21 @@ ws.onmessage = function (event) {
             sentHighFive(message);
         }
     } else if (message.type === "accept") {
-        removeHighFive(message.target);
-        removeHighFive(message.sender);
+        removeHighFive("receipt-" + message.target);
+        removeHighFive("sent-" + message.sender);
     }
 };
 
 function highFive(message) {
-    randX = Math.floor(Math.random() * ($("#main-canvas").width() - 38));
-    randY = Math.floor(Math.random() * ($("#main-canvas").height() - 50));   
+    randX = Math.floor(Math.random() * ($("#main-canvas").width() - 76));
+    randY = Math.floor(Math.random() * ($("#main-canvas").height() - 100));   
 
     $("#main-canvas").append(getNewHighFive(message.sender, randX, randY));
 }
 
 function sentHighFive(message) {
-    randX = Math.floor(Math.random() * ($("#main-canvas").width() - 38));
-    randY = Math.floor(Math.random() * ($("#main-canvas").height() - 50));
+    randX = Math.floor(Math.random() * ($("#main-canvas").width() - 76));
+    randY = Math.floor(Math.random() * ($("#main-canvas").height() - 100));
 
     $("#main-canvas").append(getNewSentHighFive(message.target, randX, randY));
 }
