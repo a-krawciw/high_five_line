@@ -15,8 +15,12 @@ ws.onmessage = function (event) {
     console.log(event.data);
     message = JSON.parse(event.data)
 
+    if (message.type === "banner") {
+        $("#banner").html(message.payload);
+    }
+
     if (document.location.pathname.includes(message.target)){
-        highFive(message)
+        highFive(message);
     }
 
     else if (document.location.pathname.includes(message.sender)) {

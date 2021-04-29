@@ -6,7 +6,8 @@ from quart import render_template
 
 app = Quart(__name__)
 
-valid_teams = ['3491', '1234', '3214', '2442']
+valid_teams = ['3491', '1234', '3214', '2442', 'Volunteer']
+active_banner = ""
 
 
 connected_websockets = {team: set() for team in valid_teams}
@@ -27,7 +28,7 @@ async def receive(teamname):
         await broadcast(encoder.encode(message_map), teamname)
         await broadcast(encoder.encode(message_map), message_map["target"])
 
-@app.websocket('/<teamname>/ws')
+@app.websocket('/view/<teamname>/ws')
 async def ws(teamname):
     if teamname  in valid_teams:
         global connected_websockets
@@ -38,12 +39,15 @@ async def ws(teamname):
         finally:
             connected_websockets[teamname].remove(queue)
 
+@app.route('/admin/')
+async def admin_page():
+    return await render_template("admin.html")
 
-@app.route('/<teamname>/')
+@app.route('/view/<teamname>/')
 async def dashboard(teamname):
     if teamname not in valid_teams:
-        return "That is valid team number."
-    return await render_template("High_Five_Dashboard.html", teamname=teamname, valid_teams=valid_teams)
+        return "That is not a valid team number."
+    return await render_template("High_Five_Dashboard.html", teamname=teamname, valid_teams=valid_teams, banner=active_banner)
 
 @app.route('/')
 async def welcome():
@@ -52,6 +56,23 @@ async def welcome():
 async def broadcast(message, target):
     for queue in connected_websockets[target]:
         await queue.put(message)
+
+async def broadcast_all(message):
+    for targets in connected_websockets.values():
+        for queue in targets:
+            await queue.put(message)
+
+
+@app.websocket('/adminws/')
+async def admin():
+    global active_banner
+    decoder = json.JSONDecoder()
+    while True:
+        message = await websocket.receive()
+        message_map = decoder.decode(message)
+        active_banner = message_map['payload']
+        await broadcast_all(message)
+
 
 if __name__ == '__main__':
     app.run()

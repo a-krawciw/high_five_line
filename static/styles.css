@@ -12,4 +12,14 @@ body {
 #main-canvas {
     width: 500px;
     height: 500px;
+
+    align-items: center;
+    align-content: center;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+#banner {
+    font-size: xx-large;
 }
