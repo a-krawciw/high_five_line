@@ -4,10 +4,7 @@ body {
     height: 100%;
 }
 
-.team_link {
-    display: block;
-    width: 100%;
-}
+
 
 #hifive-registry {
     display:inline-block;
@@ -86,4 +83,8 @@ body {
 
 #banner {
     font-size: xx-large;
+}
+
+#welcome {
+    text-align: center;
 }

@@ -39,7 +39,7 @@ async def ws(teamname):
         finally:
             connected_websockets[teamname].remove(queue)
 
-@app.route('/admin/')
+@app.route('/fluffykins/fun/times/')
 async def admin_page():
     return await render_template("admin.html")
 

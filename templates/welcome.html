@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <title>High Five!</title>
     <link rel="stylesheet" href="{{ url_for('static', filename="styles.css") }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename="welcome.css") }}" />
+    <link rel="shortcut icon" href="https://www.firstinspires.org/sites/default/files/first-favicon.ico" type="image/vnd.microsoft.icon">
 
 </head>
-<body onclick="">
+<body>
+    <h1 id="welcome">
     Welcome to the FTC High Five System! <br>
     Click on your team below to get started.
+    </h1>
     {% for team in valid_teams %}
         <a href="/view/{{ team }}/" class="team_link"> {{ team }} </a>
     {% endfor %}

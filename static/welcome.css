@@ -1,0 +1,15 @@
+body {
+    background-image: url("/static/images/awards.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    overflow: scroll;
+}
+
+.team_link {
+    background-color: #333333AA;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.6rem;
+}
