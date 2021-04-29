@@ -47,6 +47,10 @@ function highFive(message) {
     randY = Math.floor(Math.random() * ($("#main-canvas").height() - 100));   
 
     $("#main-canvas").append(getNewHighFive(message.sender, randX, randY));
+
+    setTimeout(function() { 
+        $("#receipt-" + message.sender).remove()
+    }, 10000);
 }
 
 function sentHighFive(message) {
@@ -54,6 +58,10 @@ function sentHighFive(message) {
     randY = Math.floor(Math.random() * ($("#main-canvas").height() - 100));
 
     $("#main-canvas").append(getNewSentHighFive(message.target, randX, randY));
+
+    setTimeout(function() { 
+        $("#sent-" + message.target).remove()
+    }, 10000);
 }
 
 function removeHighFive(id) {
