@@ -6,8 +6,7 @@ function getNewHighFive(name, locX, locY) {
             "id='receipt-" + name + "' class='hifive' " +
             "onclick='returnHighFive(\"" + name + "\")' " +
             "style='left: " + locX + "px; top: " + locY + "px;'>" + 
-            "<div></div>" + 
-            "<figcaption>" + name + "</figcaption>" +
+            "<div><span>" + name + "</span></div>" + 
             "</figure>";
 
     return elem
@@ -17,8 +16,7 @@ function getNewSentHighFive(name, locX, locY) {
     var elem = "<figure " +
             "id='sent-" + name + "' class='hifive sent-hifive' " +
             "style='left: " + locX + "px; top: " + locY + "px;'>" + 
-            "<div></div>" + 
-            "<figcaption>" + name + "</figcaption>" +
+            "<div><span>" + name + "</span></div>" + 
             "</figure>";
 
     return elem
@@ -59,7 +57,8 @@ function sentHighFive(message) {
 }
 
 function removeHighFive(id) {
-    $("#" + id).remove();
+    $("#" + id).html("High Five!");
+    setTimeout(function(){ $("#" + id).remove() }, 1000);
 }
 
 function createHighFive(target_name){

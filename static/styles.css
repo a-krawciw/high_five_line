@@ -1,14 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&display=swap');
+
+
 body {
     position: absolute;
     width: 100%;
     height: 100%;
+    font-family: Oleo Script;
 }
 
 
 
 #hifive-registry {
     display:inline-block;
-    font-family: Arial;
+    padding: 10px;
+    background-color: #FAFAFA;
 }
 
 #registry-label {
@@ -39,20 +44,24 @@ body {
 #main-canvas {
     position: relative;
     float: left;
-    width: 75%;
+    width: 70%;
     height: 100%;
-    padding-right: 30px;
+    margin-right: 2.5%;
+    padding-right: 2.5%;
     align-items: center;
     align-content: center;
     display: flex;
     text-align: center;
     justify-content: center;
+    background-color: #FAFAFA;
 }
 
 .hifive {
     position: absolute; 
     width: 76px; 
     height: 100px;
+    line-height: 100px;
+    text-align: center;
 }
 
 .hifive div {
@@ -68,10 +77,17 @@ body {
     background-image: url("/static/images/hifive_icon.png");
 }
 
-.hifive figcaption {
-    text-align: center;
-    font-family: Arial;
-    font-size: 20pt;
+.hifive div span {
+    display: block;
+    position: relative;
+    left: 50px;
+    bottom: 40px;
+    padding: 5px;
+    background-image: url("/static/images/label.png");
+    background-size: cover;
+    height: 50px;
+    width: 100px;
+    line-height: 35px;
 }
 
 .sent-hifive div {
