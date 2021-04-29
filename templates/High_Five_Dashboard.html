@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>High Five!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src = "{{ url_for('static', filename='main.js')}}" ></script>
     <link rel="stylesheet" href="{{ url_for('static', filename="styles.css") }}" />
 
@@ -14,6 +15,8 @@
             <div class="team_button" onclick="createHighFive('{{ team }}')"> {{ team }} </div>
         {% endif %}
     {% endfor %}
+
+    <div id="main-canvas"></div>
 
 </body>
 </html>
