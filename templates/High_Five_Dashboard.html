@@ -9,14 +9,16 @@
 
 </head>
 <body onclick="">
-    Click to give a high five!
-    {% for team in valid_teams %}
-        {% if not (team == teamname) %}
-            <div class="team_button" onclick="createHighFive('{{ team }}')"> {{ team }} </div>
-        {% endif %}
-    {% endfor %}
 
-    <div id="main-canvas"></div>
+    <div id="main-canvas" width="75%"></div>
 
+    <div id="hifive-registry">
+        <div id="registry-label">Click to send a high five!</div>
+        {% for team in valid_teams %}
+            {% if not (team == teamname) %}
+                <div class="team_button" onclick="createHighFive('{{ team }}')"> {{ team }} </div>
+            {% endif %}
+        {% endfor %}
+    </div>
 </body>
 </html>

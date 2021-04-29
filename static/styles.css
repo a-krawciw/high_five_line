@@ -1,15 +1,46 @@
+
 body {
     position: absolute;
     width: 100%;
     height: 100%;
 }
 
-.team_link {
-    display: block;
-    width: 100%;
+#hifive-registry {
+    display:inline-block;
 }
 
+#registry-label {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.team_button {
+    height: 30px;
+    line-height: 30px;
+    padding: 10px;
+    text-align: center;
+    background-color: #4CAF50; /* Green */
+}
+
+.team_button:hover {
+    background-color: #1C7F20; /* Green */
+}
+
+
+
 #main-canvas {
-    width: 500px;
-    height: 500px;
+    position: relative;
+    float: left;
+    width: 75%;
+    height: 100%;
+}
+
+figure img {
+    vertical-align: top;
+}
+figure figcaption {
+    border: 1px dotted blue;
+    text-align: center;
+    font-family: Arial;
 }
