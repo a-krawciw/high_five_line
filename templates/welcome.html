@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>High Five!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename="styles.css") }}" />
+
+</head>
+<body onclick="">
+    Welcome to the FTC High Five System! <br>
+    Click on your team below to get started.
+    {% for team in valid_teams %}
+        <a href="/{{ team }}/" class="team_link"> {{ team }} </a>
+    {% endfor %}
+
+</body>
+</html>

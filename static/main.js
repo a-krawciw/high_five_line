@@ -4,9 +4,7 @@ ws.onmessage = function (event) {
     message = JSON.parse(event.data)
     if (document.location.pathname.includes(message.target)){
         highFive()
-    }
-
-    else if (document.location.pathname.includes(message.sender)) {
+    } else if (document.location.pathname.includes(message.sender)) {
         console.log("You send a message to " + message.target)
     }
 };

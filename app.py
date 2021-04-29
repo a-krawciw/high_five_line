@@ -11,8 +11,6 @@ valid_teams = ['3491', '1234', '3214', '2442']
 
 connected_websockets = {team: set() for team in valid_teams}
 
-
-
 async def send(queue):
     while True:
         data = await queue.get()
@@ -46,6 +44,10 @@ async def dashboard(teamname):
     if teamname not in valid_teams:
         return "That is valid team number."
     return await render_template("High_Five_Dashboard.html", teamname=teamname, valid_teams=valid_teams)
+
+@app.route('/')
+async def welcome():
+    return await render_template("welcome.html", valid_teams=valid_teams)
 
 async def broadcast(message, target):
     for queue in connected_websockets[target]:

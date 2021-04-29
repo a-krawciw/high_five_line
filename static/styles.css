@@ -3,3 +3,8 @@ body {
     width: 100%;
     height: 100%;
 }
+
+.team_link {
+    display: block;
+    width: 100%;
+}
