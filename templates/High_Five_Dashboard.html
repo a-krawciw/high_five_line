@@ -3,8 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>High Five!</title>
+    <script src = "{{ url_for('static', filename='main.js')}}" ></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename="styles.css") }}" />
+
 </head>
-<body>
+<body onclick="">
     Click to give a high five!
+    {% for team in valid_teams %}
+        {% if not (team == teamname) %}
+            <div class="team_button" onclick="createHighFive('{{ team }}')"> {{ team }} </div>
+        {% endif %}
+    {% endfor %}
+
 </body>
 </html>
