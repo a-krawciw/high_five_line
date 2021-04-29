@@ -2,11 +2,14 @@ var ws = new WebSocket('ws://' + document.location.host + document.location.path
 
 
 function getNewHighFive(name, locX, locY) {
-    var elem = "<img " + 
+    var elem = "<figure " +
             "onclick='returnHighFive(\"" + name + "\")' " +
-            "style='position: absolute; left: " + locX + "px; top: " + locY + "px; width: 38px; height: 50px'" +
-            "src='/static/images/hand_icon.png' " +
-            "/>";
+            "style='position: absolute; left: " + locX + "px; top: " + locY + "px; width: 38px; height: 50px'>" + 
+            "<img " + 
+            "src='/static/images/hand_icon.png' width='38px'; height='50px' " +
+            "/>" +
+            "<figcaption>" + name + "</figcaption>" +
+            "</figure>";
 
     return elem
 }
@@ -29,12 +32,10 @@ ws.onmessage = function (event) {
 };
 
 function highFive(message) {
-    randX = Math.floor(Math.random() * ($("#main-canvas").width() - 30));
-    randY = Math.floor(Math.random() * ($("#main-canvas").height() - 30));   
+    randX = Math.floor(Math.random() * ($("#main-canvas").width() - 38));
+    randY = Math.floor(Math.random() * ($("#main-canvas").height() - 50));   
 
-    console.log(getNewHighFive(message.target, randX, randY));
-
-    $("#main-canvas").append(getNewHighFive(message.target, randX, randY));
+    $("#main-canvas").append(getNewHighFive(message.sender, randX, randY));
 }
 
 function createHighFive(target_name){
