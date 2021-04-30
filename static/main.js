@@ -1,10 +1,16 @@
 var ws = new WebSocket('ws://' + document.location.host + document.location.pathname + 'ws');
 
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
 
-function getNewHighFive(name, locX, locY) {
+function getNewHighFive(ID, name, locX, locY) {
     var elem = "<figure " +
-            "id='receipt-" + name + "' class='hifive' " +
-            "onclick='returnHighFive(\"" + name + "\")' " +
+            "id='id" + ID + "' class='hifive' " +
+            "onclick='returnHighFive(\"" + name + "\", \"" + ID + "\")' " +
             "style='left: " + locX + "px; top: " + locY + "px;'>" + 
             "<div><span>" + name + "</span></div>" + 
             "</figure>";
@@ -12,17 +18,15 @@ function getNewHighFive(name, locX, locY) {
     return elem
 }
 
-function getNewSentHighFive(name, locX, locY) {
+function getNewSentHighFive(ID, name, locX, locY) {
     var elem = "<figure " +
-            "id='sent-" + name + "' class='hifive sent-hifive' " +
+            "id='id" + ID + "' class='hifive sent-hifive' " +
             "style='left: " + locX + "px; top: " + locY + "px;'>" + 
             "<div><span>" + name + "</span></div>" + 
             "</figure>";
 
     return elem
 }
-
-
 
 ws.onmessage = function (event) {
     console.log(event.data);
@@ -37,8 +41,7 @@ ws.onmessage = function (event) {
             sentHighFive(message);
         }
     } else if (message.type === "accept") {
-        removeHighFive("receipt-" + message.target);
-        removeHighFive("sent-" + message.sender);
+        removeHighFive(message.ID, signoff=1000);
     }
 };
 
@@ -46,10 +49,10 @@ function highFive(message) {
     randX = Math.floor(Math.random() * ($("#main-canvas").width() - 76));
     randY = Math.floor(Math.random() * ($("#main-canvas").height() - 100));   
 
-    $("#main-canvas").append(getNewHighFive(message.sender, randX, randY));
+    $("#main-canvas").append(getNewHighFive(message.ID, message.sender, randX, randY));
 
     setTimeout(function() { 
-        $("#receipt-" + message.sender).remove()
+        removeHighFive(message.ID);
     }, 10000);
 }
 
@@ -57,24 +60,29 @@ function sentHighFive(message) {
     randX = Math.floor(Math.random() * ($("#main-canvas").width() - 76));
     randY = Math.floor(Math.random() * ($("#main-canvas").height() - 100));
 
-    $("#main-canvas").append(getNewSentHighFive(message.target, randX, randY));
+    $("#main-canvas").append(getNewSentHighFive(message.ID, message.target, randX, randY));
 
     setTimeout(function() { 
-        $("#sent-" + message.target).remove()
+        removeHighFive(message.ID);
     }, 10000);
 }
 
-function removeHighFive(id) {
-    $("#" + id).html("High Five!");
-    setTimeout(function(){ $("#" + id).remove() }, 1000);
+function removeHighFive(id, signoff=0) {
+    if (signoff > 0) {
+        console.log("#id" + id);
+        $("#id" + id).html("<span style='background-color: #FAFAFA; padding: 5px;'>High Five!</span>");
+        setTimeout(function(){ $("#id" + id).remove() }, signoff);    
+    } else {
+        $("#id" + id).remove()
+    }
 }
 
 function createHighFive(target_name){
-    message = {type: "create", target: target_name}
+    message = {type: "create", target: target_name, ID: uuidv4()}
     ws.send(JSON.stringify(message));
 }
 
-function returnHighFive(sender_name) {
-    message = {type: "accept",  target: sender_name}
+function returnHighFive(sender_name, hifive_ID) {
+    message = {type: "accept",  target: sender_name, ID: hifive_ID}
     ws.send(JSON.stringify(message))
 }
