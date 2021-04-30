@@ -1,4 +1,9 @@
-var ws = new WebSocket('wss://' + document.location.host + document.location.pathname + 'ws');
+if (document.location.hostname === '127.0.0.1') {
+    var ws = new WebSocket('ws://' + document.location.host + document.location.pathname + 'ws');
+} else {
+    var ws = new WebSocket('wss://' + document.location.host + document.location.pathname + 'ws');
+}
+
 
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
