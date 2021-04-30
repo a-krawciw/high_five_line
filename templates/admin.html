@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename="styles.css") }}" />
 </head>
 <body>
-
+<input id='banner_text' type='text' placeholder='Banner' />
+<button onclick="sendBanner($('#banner_text').val())">Submit</button>
 </body>
 </html>

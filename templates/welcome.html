@@ -13,9 +13,11 @@
     Welcome to the FTC High Five System! <br>
     Click on your team below to get started.
     </h1>
-    {% for team in valid_teams %}
-        <a href="/view/{{ team }}/" class="team_link"> {{ team }} </a>
-    {% endfor %}
+    <div id="team-registry">
+        {% for team in valid_teams %}
+            <a href="/view/{{ team }}/" class="team_link"> {{ team }} </a>
+        {% endfor %}
+    </div>
 
 </body>
 </html>

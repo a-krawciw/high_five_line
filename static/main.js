@@ -70,7 +70,7 @@ function sentHighFive(message) {
 function removeHighFive(id, signoff=0) {
     if (signoff > 0) {
         console.log("#id" + id);
-        $("#id" + id).html("<span style='background-color: #FAFAFA; padding: 5px;'>High Five!</span>");
+        $("#id" + id).html("<span style='background-color: #FAFAFA; color: black; padding: 5px; font-size: 10pt;'>High Five!</span>");
         setTimeout(function(){ $("#id" + id).remove() }, signoff);    
     } else {
         $("#id" + id).remove()

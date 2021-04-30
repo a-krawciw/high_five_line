@@ -1,15 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
 body {
     background-image: url("/static/images/awards.png");
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
     overflow: scroll;
+    font-family: Noto Sans JP;
+}
+
+#welcome {
+    background-color: #ffffff;
+    border: 5px solid #4293f5;
+    margin: auto 20%;
+    padding: 30px;
+    color: #444;
+}
+
+#team-registry {
+    margin: auto 35%;
 }
 
 .team_link {
-    background-color: #333333AA;
     display: block;
-    width: 100%;
+    color: #4293f5 !important;
+    text-decoration: none;
+    background: #ffffff;
+    padding: 20px;
+    margin-top: 5px;
     text-align: center;
-    padding: 0.6rem;
+    border: 4px solid #4293f5 !important;
+    transition: all 0.4s ease 0s;    
+    font-size: 15pt;
+}
+.team_link:visited {
+    color: black;
+}
+
+.team_link:hover {
+    color: #ffffff !important;
+    background: #4293f5;
+    border-color: #4293f5 !important;
+    transition: all 0.4s ease 0s;
+}
+
+.team_link:active {
+    transition: background-color 0s ease-in-out;
+    background-color: #58a3ff;
+    color: white;
 }
