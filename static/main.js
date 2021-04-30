@@ -63,7 +63,7 @@ function highFive(message) {
 
 function sentHighFive(message) {
     randX = Math.floor(Math.random() * ($("#main-canvas").width() - 200));
-    randY = Math.floor(Math.random() * ($("#main-canvas").height() - 100));
+    randY = Math.floor(Math.random() * ($("#main-canvas").height() - 150)) + 50;
 
     $("#main-canvas").append(getNewSentHighFive(message.ID, message.target, randX, randY));
 
@@ -74,7 +74,6 @@ function sentHighFive(message) {
 
 function removeHighFive(id, signoff=0) {
     if (signoff > 0) {
-        console.log("#id" + id);
         $("#id" + id).html("<span style='background-color: #FAFAFA; color: black; padding: 5px; font-size: 10pt;'>High Five!</span>");
         setTimeout(function(){ $("#id" + id).remove() }, signoff);    
     } else {
