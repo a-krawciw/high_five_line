@@ -4,6 +4,13 @@ if (document.location.hostname === '127.0.0.1') {
     var ws = new WebSocket('wss://' + document.location.host + document.location.pathname + 'ws');
 }
 
+setTimeout(ping, 20000);
+
+function ping() {
+    message = {type: "ping", target: "none", ID: uuidv4()}
+    ws.send(JSON.stringify(message));
+    setTimeout(ping, 20000)
+}
 
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {

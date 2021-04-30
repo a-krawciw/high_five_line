@@ -65,8 +65,9 @@ async def welcome():
     return await render_template("welcome.html", valid_teams=valid_teams)
 
 async def broadcast(message, target):
-    for queue in connected_websockets[target]:
-        await queue.put(message)
+    if target in connected_websockets.keys():
+        for queue in connected_websockets[target]:
+            await queue.put(message)
 
 async def broadcast_all(message):
     for targets in connected_websockets.values():
