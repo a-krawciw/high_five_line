@@ -1,7 +1,8 @@
 import asyncio
 import json
+import os
 
-from quart import Quart, websocket
+from quart import Quart, websocket, send_from_directory
 from quart import render_template
 
 app = Quart(__name__)
@@ -10,7 +11,13 @@ valid_teams = ['3491', '1234', '3214', '2442', 'Volunteer']
 active_banner = ""
 
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static/images'), 'first-favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 connected_websockets = {team: set() for team in valid_teams}
+
+
 
 async def send(queue):
     while True:
