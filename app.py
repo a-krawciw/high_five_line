@@ -7,7 +7,7 @@ from quart import render_template
 
 app = Quart(__name__)
 
-valid_teams = ['3491', '1234', '3214', '2442', 'Volunteer']
+valid_teams = ['417', '3595', '7198', '3805', '5009', '6220', '8923', '456', '444', '3491', '1234', '3214', '2442', 'Volunteer']
 active_banner = ""
 
 
