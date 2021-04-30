@@ -62,7 +62,7 @@ function highFive(message) {
 }
 
 function sentHighFive(message) {
-    randX = Math.floor(Math.random() * ($("#main-canvas").width() - 76));
+    randX = Math.floor(Math.random() * ($("#main-canvas").width() - 200));
     randY = Math.floor(Math.random() * ($("#main-canvas").height() - 100));
 
     $("#main-canvas").append(getNewSentHighFive(message.ID, message.target, randX, randY));
