@@ -4,7 +4,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    font-family: Noto Sans JP;
+    font-family: Noto Sans JP, sans-serif;
 }
 
 #hifive-registry {
@@ -46,12 +46,27 @@ body {
     color: white;
 }
 
+@media only screen and (orientation: landscape) {
+  #main-canvas {
+    width: 65%;
+    height: 100%;
+  }
+}
 
+@media only screen and (orientation: portrait) {
+    #main-canvas {
+        width: 100%;
+        height: 60vh;
+    }
+
+    #body {
+        justify-content: center;
+        text-align: center;
+    }
+}
 #main-canvas {
     position: relative;
     float: left;
-    width: 65%;
-    height: 100%;
     margin-right: 2.5%;
     padding-right: 2.5%;
     align-items: center;

@@ -2,7 +2,7 @@ import asyncio
 import json
 import os
 
-from quart import Quart, websocket, send_from_directory
+from quart import Quart, websocket, send_from_directory, redirect
 from quart import render_template
 
 app = Quart(__name__)
@@ -49,6 +49,10 @@ async def ws(teamname):
 @app.route('/fluffykins/fun/times/')
 async def admin_page():
     return await render_template("admin.html")
+
+@app.route("/view/")
+async def send_home():
+    return redirect("/", code=303)
 
 @app.route('/view/<teamname>/')
 async def dashboard(teamname):
