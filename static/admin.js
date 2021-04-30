@@ -1,4 +1,4 @@
-var ws = new WebSocket('ws://' + document.location.host + '/adminws/');
+var ws = new WebSocket('wss://' + document.location.host + '/adminws/');
 ws.onmessage = function (event) {
     console.log(event.data)
 }
