@@ -1,2 +1,2 @@
 Quart~=0.14.1
-gunicorn
+hypercorn
