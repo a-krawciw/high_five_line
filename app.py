@@ -1,13 +1,18 @@
 import asyncio
 import json
-import os
+import os 
 
 from quart import Quart, websocket, send_from_directory, redirect
 from quart import render_template
 
 app = Quart(__name__)
 
-valid_teams = ['417', '3595', '7198', '3805', '5009', '6220', '8923', '456', '444', '3491', '1234', '3214', '2442', 'Volunteer']
+valid_teams = ['3491', '13459', '15013', '15479',
+               '16031', '16140', '16195', '16205',
+               '16267', '16353', '16448', '17453',
+               '18191', '18502', '18589', '18779',
+               '18800', '18840', '18841', 'Volunteer',
+               'Parent', 'Other']
 active_banner = ""
 
 
