@@ -12,9 +12,10 @@
 </head>
 <body onclick="">
 
-    <div id="main-canvas" width="75%"> <span id="banner">{{ banner }}</span></div>
+    <div id="main-canvas" > <span id="banner">{{ banner }}</span></div>
 
     <div id="hifive-registry">
+        <div id="show_icon" class="open" onclick="toggleButtons();"></div>
         <div id="registry-label">Click to send a high five!</div><br />
         {% for team in valid_teams %}
             {% if not (team == teamname) %}

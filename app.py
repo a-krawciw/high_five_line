@@ -1,6 +1,6 @@
 import asyncio
 import json
-import os 
+import os
 
 from quart import Quart, websocket, send_from_directory, redirect
 from quart import render_template
@@ -18,16 +18,18 @@ active_banner = ""
 
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static/images'), 'first-favicon.ico', mimetype='image/vnd.microsoft.icon')
+    return send_from_directory(os.path.join(app.root_path, 'static/images'), 'first-favicon.ico',
+                               mimetype='image/vnd.microsoft.icon')
+
 
 connected_websockets = {team: set() for team in valid_teams}
-
 
 
 async def send(queue):
     while True:
         data = await queue.get()
         await websocket.send(data)
+
 
 async def receive(teamname):
     decoder = json.JSONDecoder()
@@ -40,9 +42,10 @@ async def receive(teamname):
         await broadcast(encoder.encode(message_map), teamname)
         await broadcast(encoder.encode(message_map), message_map["target"])
 
+
 @app.websocket('/view/<teamname>/ws')
 async def ws(teamname):
-    if teamname  in valid_teams:
+    if teamname in valid_teams:
         global connected_websockets
         queue = asyncio.Queue()
         connected_websockets[teamname].add(queue)
@@ -51,28 +54,35 @@ async def ws(teamname):
         finally:
             connected_websockets[teamname].remove(queue)
 
+
 @app.route('/fluffykins/fun/times/')
 async def admin_page():
     return await render_template("admin.html")
+
 
 @app.route("/view/")
 async def send_home():
     return redirect("/", code=303)
 
+
 @app.route('/view/<teamname>/')
 async def dashboard(teamname):
     if teamname not in valid_teams:
         return "That is not a valid team number."
-    return await render_template("High_Five_Dashboard.html", teamname=teamname, valid_teams=valid_teams, banner=active_banner)
+    return await render_template("High_Five_Dashboard.html", teamname=teamname, valid_teams=valid_teams,
+                                 banner=active_banner)
+
 
 @app.route('/')
 async def welcome():
     return await render_template("welcome.html", valid_teams=valid_teams)
 
+
 async def broadcast(message, target):
     if target in connected_websockets.keys():
         for queue in connected_websockets[target]:
             await queue.put(message)
+
 
 async def broadcast_all(message):
     for targets in connected_websockets.values():

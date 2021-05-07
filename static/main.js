@@ -97,3 +97,10 @@ function returnHighFive(sender_name, hifive_ID) {
     message = {type: "accept",  target: sender_name, ID: hifive_ID}
     ws.send(JSON.stringify(message))
 }
+
+function toggleButtons() {
+    $("#registry-label").toggleClass("hidden");
+    $(".team_button").toggleClass("hidden");
+    $("#main-canvas").toggleClass("fullscreen");
+    $("#show_icon").toggleClass("open").toggleClass("closed");
+}
