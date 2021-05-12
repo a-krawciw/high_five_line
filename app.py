@@ -17,8 +17,8 @@ active_banner = ""
 
 
 @app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static/images'), 'first-favicon.ico',
+async def favicon():
+    return await send_from_directory(os.path.join(app.root_path, 'static/images'), 'first-favicon.ico',
                                mimetype='image/vnd.microsoft.icon')
 
 
@@ -97,8 +97,10 @@ async def admin():
     while True:
         message = await websocket.receive()
         message_map = decoder.decode(message)
-        active_banner = message_map['payload']
-        await broadcast_all(message)
+
+        if "payload" in message_map:
+            active_banner = message_map['payload']
+            await broadcast_all(message)
 
 
 if __name__ == '__main__':

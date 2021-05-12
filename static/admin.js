@@ -7,7 +7,7 @@ if (document.location.hostname === '127.0.0.1') {
 setTimeout(ping, 20000);
 
 function ping() {
-    message = {type: "ping", target: "none", ID: uuidv4()}
+    message = {type: "ping", target: "none"}
     ws.send(JSON.stringify(message));
     setTimeout(ping, 20000)
 }
